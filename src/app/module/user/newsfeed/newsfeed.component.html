@@ -1,0 +1,109 @@
+<div style="font-size: 18px" id="page-contents">
+
+  <div class="row">
+    <div class="col-md-3 static">
+      <div class="profile-card">
+        <img src="{{userDetail?.avatar}}" alt="user" class="profile-photo"/>
+        <h2 class="a1" ngbtooltip="Thông tin cá nhân" routerLink="/user/user-detail"><a
+          class="text-white">{{userDetail?.username}}</a></h2>
+        <a class="text-white"><i class="ion ion-android-person-add"></i> {{listFriend?.length}} friends</a>
+      </div>
+      <ul class="nav-news-feed">
+        <li><i class="icon ion-ios-paper"></i>
+          <div><a routerLink="/user/newsfeed/detail">Tin của tôi</a></div>
+        </li>
+        <li><i class="icon ion-ios-people"></i>
+          <div><a routerLink="/user/newsfeed/requests">Lời mời kết bạn</a></div>
+        </li>
+        <li><i class="icon ion-ios-people-outline"></i>
+          <div><a routerLink="/user/newsfeed/friends">Bạn bè</a></div>
+        </li>
+        <li><i class="icon ion-ios-people"></i>
+          <div><a routerLink="/user/newsfeed/people-nearby">Gợi ý kết bạn</a></div>
+        </li>
+        <li><i class="icon ion-chatboxes"></i>
+          <div><a>Tin nhắn</a></div>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <div class="create-post">
+        <div class="row">
+          <div class="col-md-7 col-sm-7">
+            <div class="form-group">
+              <img src="{{userDetail.avatar}}" alt="" class="profile-photo-md"/>
+              <textarea name="texts" id="exampleTextarea" cols="50" rows="1" class="form-control"
+                        placeholder="Bạn đang nghĩ gì thế?"></textarea>
+            </div>
+          </div>
+          <div class="col-md-5 col-sm-5">
+            <div class="tools">
+              <ul class="publishing-tools list-inline">
+                <li><a><i class="ion-compose"></i></a></li>
+                <li><a><i class="ion-images"></i></a></li>
+                <li><a><i class="ion-ios-videocam"></i></a></li>
+                <li><a><i class="ion-map"></i></a></li>
+              </ul>
+              <button class="btn btn-primary pull-right">Đăng</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--List post-->
+      <div style="border: 1px violet !important; margin-bottom: 30px; font-size: 18px"
+           class="post-content" *ngFor=" let p of post">
+        <div class="post-container">
+          <img src="{{p?.user?.avatar}}" alt="user" class="profile-photo-md pull-left"/>
+          <div class="post-detail">
+            <div class="user-info">
+              <h5><a class="profile-link">{{p?.user?.username}}</a>
+              </h5>
+              <p style="font-size: 15px" class="text-muted">{{p.createAt | date:"dd/MM/yyyy"}}</p>
+            </div>
+            <div class="reaction">
+              <a class="btn text-green" [routerLink]="['/user/newsfeed/detail']"><i
+                class="icon ion-thumbsup"></i>{{p.numberLike}}</a>
+              <a class="btn text-red"><i class="fa fa-thumbs-down"></i> 0</a>
+            </div>
+            <div class="line-divider"></div>
+            <div class="post-text">
+              <p style="font-size: 20px">{{p.content}}</p>
+            </div>
+            <div class="line-divider"></div>
+            <div class="post-comment" *ngFor=" let c of comment">
+              <img src="https://i.pinimg.com/736x/cc/16/0c/cc160c19dbd165c43046c176223f10fe.jpg"
+                   class="profile-photo-sm"/>
+              <p style="font-size: 16px"><a class="profile-link">Julia </a> {{c.content}}
+              </p>
+            </div>
+            <div class="post-comment">
+              <img src="https://i.pinimg.com/736x/cc/16/0c/cc160c19dbd165c43046c176223f10fe.jpg" alt=""
+                   class="profile-photo-sm"/>
+              <input type="text" class="form-control" placeholder="Post a comment">
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--List post-->
+    </div>
+    <div style="margin-left: 50px" class="col-md-2 static">
+      <div class="suggestions" id="sticky-sidebar">
+        <h3 class="grey">Những người bạn có thể biết</h3>
+        <div class="follow-user" *ngFor=" let user of users">
+          <div *ngIf="user.id != idUserLogIn">
+            <img
+              src="{{user.avatar}}"
+              alt="" class="profile-photo-sm pull-left a1"/>
+            <div>
+              <h3><a>{{user.username}}</a></h3>
+              <a style="font-size: 15px" class="text-green a1">Kết bạn</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+

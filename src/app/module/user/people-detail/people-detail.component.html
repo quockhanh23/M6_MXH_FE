@@ -1,0 +1,101 @@
+
+<div class="container">
+
+  <!-- Timeline
+  ================================================= -->
+  <div class="timeline">
+    <div [ngStyle]="{'background': 'url(' + cover + ')'}" class="timeline-cover">
+
+      <!--Timeline Menu for Large Screens-->
+      <div class="timeline-nav-bar hidden-sm hidden-xs">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="profile-info">
+              <img src="{{peopleDetail.avatar}}" alt="" class="img-responsive profile-photo"/>
+              <h3>{{peopleDetail.username}}</h3>
+              <p class="text-muted">Creative Director</p>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <ul class="list-inline profile-menu">
+              <li><a href="timeline.html">Timeline</a></li>
+              <li><a href="timeline-about.html" class="active">About</a></li>
+              <li><a href="timeline-album.html">Album</a></li>
+              <li><a href="timeline-friends.html">Friends</a></li>
+            </ul>
+            <ul class="follow-me list-inline">
+
+            </ul>
+          </div>
+        </div>
+      </div><!--Timeline Menu for Large Screens End-->
+
+      <!--Timeline Menu for Small Screens-->
+      <div class="navbar-mobile hidden-lg hidden-md">
+        <div class="profile-info">
+          <img src="{{peopleDetail.avatar}}" alt="" class="img-responsive profile-photo"/>
+          <h4>Sarah Cruiz</h4>
+          <p class="text-muted">Creative Director</p>
+        </div>
+        <div class="mobile-menu">
+          <ul class="list-inline">
+            <li><a href="timline.html">Timeline</a></li>
+            <li><a href="timeline-about.html" class="active">About</a></li>
+            <li><a href="timeline-album.html">Album</a></li>
+            <li><a href="timeline-friends.html">Friends</a></li>
+          </ul>
+        </div>
+      </div><!--Timeline Menu for Small Screens End-->
+
+    </div>
+    <div id="page-contents">
+      <div class="row">
+        <div class="col-md-3">
+
+          <!--Edit Profile Menu-->
+          <ul class="edit-menu">
+            <li class="active"><i class="icon ion-ios-information"></i><a routerLink="/user/user-detail">Basic
+              Information</a></li>
+
+            <li><i class="icon ion-ios-people"></i><a routerLink="/user/password">Friends ({{friendList?.length}}) </a></li>
+            <li><i class="icon ion-ios-people"></i><a routerLink="/user/password">Mutual Friends ({{mutualFriend?.length}})</a></li>
+          </ul>
+        </div>
+        <div class="col-md-7">
+
+          <!-- About
+              ================================================= -->
+          <div class="about-profile">
+            <div class="about-content-block">
+              <h4 class="grey"><i class="ion-ios-information-outline icon-in-title"></i>Personal Information</h4>
+            </div>
+            <div class="about-content-block">
+              <h4 class="grey"><i class="ion-ios-person-outline icon-in-title"></i>Full name</h4>
+              <p>{{peopleDetail.fullName}}</p>
+            </div>
+            <div class="about-content-block">
+              <h4 class="grey"><i class="ion-ios-location-outline icon-in-title"></i>Location</h4>
+              <p>{{peopleDetail.address}}</p>
+            </div>
+            <div class="about-content-block">
+              <h4 class="grey"><i class="ion-ios-chatboxes-outline icon-in-title"></i>Phone</h4>
+              <p>{{peopleDetail.phone}}</p>
+            </div>
+            <div class="about-content-block">
+              <h4 class="grey"><i class="ion-ios-heart-outline icon-in-title"></i>Interests</h4>
+              <p>{{peopleDetail.favorite}}</p>
+            </div>
+
+          </div>
+
+          <!--Sticky Timeline Activity Sidebar-->
+
+        </div>
+        <div class="col-md-2 static">
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

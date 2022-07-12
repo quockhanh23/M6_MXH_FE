@@ -1,0 +1,66 @@
+<!-- Friend List
+================================================= -->
+<div class="friend-list">
+  <div class="row">
+    <div *ngFor="let user of listFriendRequest" class="col-md-6 col-sm-6">
+      <div class="friend-card">
+        <img src="http://placehold.it/1030x360" alt="profile-cover" class="img-responsive cover"/>
+        <div class="card-info">
+          <img src="http://placehold.it/300x300" alt="user" class="profile-photo-lg"/>
+          <div class="friend-info">
+            <div class="pull-right">
+
+              <button class="btn btn-primary" style="margin-bottom: 5px; margin-top: -20px;"
+                      (click)="acceptFriend(user.id, user.username)">Confirm
+              </button>
+              <br>
+              <button class="btn btn-light" style="padding: 7px 29px; border-radius: 30px"
+                      (click)="deleteRequest(user.id)">Delete
+              </button>
+            </div>
+            <!--                    <a href="#" class="pull-right text-green">My Friend</a>-->
+            <h5><a href="timeline.html" class="profile-link">{{user.username}}</a></h5>
+            <p>Student at Harvard</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--modal-->
+<div class="modal fade" id="confirmRequest" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmRequest1">Accept friend request. Please wait...</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <b>Successfully accepted {{usernameFriend}}'s friend request !</b>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="deleteRequest" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteRequest1">Refused a friend request. Please wait...</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <b>Successfully refused {{usernameFriend}}'s friend request !</b>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>

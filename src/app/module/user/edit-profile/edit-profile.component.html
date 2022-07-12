@@ -1,0 +1,105 @@
+
+
+
+  <!-- Timeline
+  ================================================= -->
+  <div class="timeline">
+
+    <div id="page-contents">
+      <div class="row">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-7">
+
+          <!-- Basic Information
+          ================================================= -->
+          <div class="edit-profile-container">
+            <div class="block-title">
+              <h4 class="grey"><i class="icon ion-android-checkmark-circle"></i>Sửa thông tin cơ bản</h4>
+              <div class="line"></div>
+            </div>
+            <div class="edit-block">
+              <div class="form-group col-12">
+                <label for="avatar">Đổi ảnh đại diện</label>
+                <input type="file"
+                       id="avatar"
+                       #userPhoto
+                       (change)="onFileSelected($event)"
+                       name="image"
+                       autocomplete="off"
+                />
+              </div>
+              <div class="form-group col-12">
+                <label for="cover">Đổi ảnh nền</label>
+                <input type="file"
+                       id="cover"
+                       #userPhoto
+                       (change)="onFileSelected1($event)"
+                       name="image"
+                       autocomplete="off"
+                />
+              </div>
+              <form [formGroup]="updateForm" (ngSubmit)="update()" name="basic-info" id="basic-info" class="form-inline">
+                <div class="row">
+                  <div class="form-group col-xs-12">
+                    <label for="fullname">My full name</label>
+                    <input formControlName="fullName" id="fullname" class="form-control input-group-lg" type="text" name="fullname" title="Enter fullname" />
+                  </div>
+                  <div style="color: red;padding-left: 30px" role="alert"
+                       *ngIf="updateForm.controls['fullName'].errors?.['required']
+         && updateForm.controls['fullName'].touched">Full name is required!
+                  </div>
+                  <div style="color: red;padding-left: 30px" role="alert"
+                       *ngIf="updateForm.controls['fullName'].errors?.['pattern']
+         && updateForm.controls['fullName'].touched">Not a valid name!
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-xs-12">
+                    <label for="phone">Phone number</label>
+                    <input formControlName="phone" id="phone" class="form-control input-group-lg" type="text"
+                           name="phone" title="Enter Phone number" />
+                  </div>
+                  <div style="color: red;padding-left: 30px" role="alert"
+                       *ngIf="updateForm.controls['phone'].errors?.['required']
+         && updateForm.controls['phone'].touched">Phone number is required!
+                  </div>
+                  <div style="color: red;padding-left: 30px" role="alert"
+                       *ngIf="updateForm.controls['phone'].errors?.['pattern']
+         && updateForm.controls['phone'].touched">Not a valid number!
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-xs-12">
+                    <label for="address">My address</label>
+                    <input formControlName = "address" id="address" class="form-control input-group-lg" type="text" name="address" title="Enter address" />
+                  </div>
+                  <div style="color: red;padding-left: 30px" role="alert"
+                       *ngIf="updateForm.controls['address'].errors?.['required']
+         && updateForm.controls['address'].touched">Address is required!
+                  </div>
+                  <div style="color: red;padding-left: 30px" role="alert"
+                       *ngIf="updateForm.controls['address'].errors?.['pattern']
+         && updateForm.controls['address'].touched">Not a valid address!
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-xs-12">
+                    <label for="my-favorite">Sở thích</label>
+                    <textarea formControlName="favorite" id="my-favorite" name="information" class="form-control"  rows="4" cols="400"></textarea>
+                  </div>
+                </div>
+                <button class="btn btn-primary">Lưu lại thay đổi</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2 static">
+          <!--Sticky Timeline Activity Sidebar-->
+        </div>
+      </div>
+    </div>
+  </div>
+
+
