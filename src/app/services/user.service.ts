@@ -3,7 +3,6 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
 import {User} from "../models/user";
-import {Post2} from "../models/post2";
 
 const API_URL = environment.apiUrl;
 const API_LOGIN = "http://localhost:8080/api/users"
