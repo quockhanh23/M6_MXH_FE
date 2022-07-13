@@ -8,4 +8,5 @@ export interface Comment {
   editAt?: string
   user?: User
   post?: Post2
+  image?: string
 }

@@ -9,4 +9,5 @@ export interface Post2 {
   numberLike?: string;
   numberDisLike?: string;
   comment?: Comment
+  image?: string
 }

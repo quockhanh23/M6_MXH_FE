@@ -37,7 +37,9 @@
                 <textarea name="texts" id="exampleTextarea" cols="50" rows="1" class=""
                           onfocus="this.value=''" formControlName="content"
                           placeholder="Bạn đang nghĩ gì thế?"></textarea>
+
               </div>
+              <span style="margin-left: 60px; font-size: 15px">Tối đa 1000 kí tự.</span>
             </div>
             <div class="col-md-5 col-sm-5">
               <div class="tools">
@@ -77,6 +79,9 @@
             <div class="post-text">
               <p style="font-size: 20px">{{p.content}}</p>
             </div>
+            <div>
+              <img style="width: 100%; height: 900px" src="{{p.image}}">
+            </div>
             <div class="line-divider"></div>
             <h3>Tất cả bình luận: </h3>
             <div *ngFor=" let c of comment">
@@ -86,15 +91,23 @@
                     <img src="{{c?.user?.avatar}}"
                          class="profile-photo-sm"/>
                   </div>
+
                   <div class="col-8">
                     <span style="margin-top: 9px; font-size: 16px"><a class="profile-link">{{c?.user?.username}}
                       : </a> {{c.content}}  </span>
+                    <div style=" padding: 0px">
+                      <h2 style="font-size: 15px"
+                          class="btn text-green"><i class="icon ion-thumbsup"></i></h2>
+                      <h2 style="font-size: 15px" class="btn text-red"><i
+                        class="fa fa-thumbs-down"></i></h2>
+                    </div>
                   </div>
                   <div class="col-3">
                     <span>
                         {{c.createAt | date:"hh:mm | dd/MM/yyyy" }}
                     </span>
                   </div>
+
                 </div>
               </div>
             </div>
