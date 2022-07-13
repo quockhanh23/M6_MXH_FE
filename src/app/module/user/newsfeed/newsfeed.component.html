@@ -37,7 +37,6 @@
                 <textarea name="texts" id="exampleTextarea" cols="50" rows="1" class=""
                           onfocus="this.value=''" formControlName="content"
                           placeholder="Bạn đang nghĩ gì thế?"></textarea>
-
               </div>
               <span style="margin-left: 60px; font-size: 15px">Tối đa 1000 kí tự.</span>
             </div>
@@ -80,7 +79,7 @@
               <p style="font-size: 20px">{{p.content}}</p>
             </div>
             <div>
-              <img style="width: 100%; height: 900px" src="{{p.image}}">
+              <img style="width: 100%;" src="{{p.image}}">
             </div>
             <div class="line-divider"></div>
             <h3>Tất cả bình luận: </h3>
@@ -91,7 +90,6 @@
                     <img src="{{c?.user?.avatar}}"
                          class="profile-photo-sm"/>
                   </div>
-
                   <div class="col-8">
                     <span style="margin-top: 9px; font-size: 16px"><a class="profile-link">{{c?.user?.username}}
                       : </a> {{c.content}}  </span>
@@ -107,7 +105,6 @@
                         {{c.createAt | date:"hh:mm | dd/MM/yyyy" }}
                     </span>
                   </div>
-
                 </div>
               </div>
             </div>
@@ -154,5 +151,4 @@
     </div>
   </div>
 </div>
-
 
