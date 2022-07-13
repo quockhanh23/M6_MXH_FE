@@ -28,27 +28,32 @@
     </div>
     <div class="col-md-6">
       <div class="create-post">
-        <div class="row">
-          <div class="col-md-7 col-sm-7">
-            <div class="form-group">
-              <img src="{{userDetail.avatar}}" alt="" class="profile-photo-md"/>
-              <textarea name="texts" id="exampleTextarea" cols="50" rows="1" class="form-control"
-                        placeholder="Bạn đang nghĩ gì thế?"></textarea>
+        <form [formGroup]="newPost"
+              (ngSubmit)="createPost(userDetail?.id)">
+          <div class="row">
+            <div class="col-md-7 col-sm-7">
+              <div class="form-group">
+                <img src="{{userDetail.avatar}}" alt="" class="profile-photo-md"/>
+                <textarea name="texts" id="exampleTextarea" cols="50" rows="1" class=""
+                          onfocus="this.value=''" formControlName="content"
+                          placeholder="Bạn đang nghĩ gì thế?"></textarea>
+              </div>
+            </div>
+            <div class="col-md-5 col-sm-5">
+              <div class="tools">
+                <ul class="publishing-tools list-inline">
+                  <li><a><i class="ion-compose"></i></a></li>
+                  <li><a><i class="ion-images"></i></a></li>
+                  <li><a><i class="ion-ios-videocam"></i></a></li>
+                  <li><a><i class="ion-map"></i></a></li>
+                </ul>
+                <button class="btn btn-primary pull-right">Đăng</button>
+              </div>
             </div>
           </div>
-          <div class="col-md-5 col-sm-5">
-            <div class="tools">
-              <ul class="publishing-tools list-inline">
-                <li><a><i class="ion-compose"></i></a></li>
-                <li><a><i class="ion-images"></i></a></li>
-                <li><a><i class="ion-ios-videocam"></i></a></li>
-                <li><a><i class="ion-map"></i></a></li>
-              </ul>
-              <button class="btn btn-primary pull-right">Đăng</button>
-            </div>
-          </div>
-        </div>
+        </form>
       </div>
+
       <!--List post-->
       <div style="border: 1px violet !important; margin-bottom: 30px; font-size: 18px"
            class="post-content" *ngFor=" let p of post">
@@ -56,30 +61,62 @@
           <img src="{{p?.user?.avatar}}" alt="user" class="profile-photo-md pull-left"/>
           <div class="post-detail">
             <div class="user-info">
-              <h5><a class="profile-link">{{p?.user?.username}}</a>
-              </h5>
+              <h2><a class="profile-link">{{p?.user?.username}}</a>
+              </h2>
               <p style="font-size: 15px" class="text-muted">{{p.createAt | date:"dd/MM/yyyy"}}</p>
             </div>
             <div class="reaction">
-              <a class="btn text-green" [routerLink]="['/user/newsfeed/detail']"><i
-                class="icon ion-thumbsup"></i>{{p.numberLike}}</a>
-              <a class="btn text-red"><i class="fa fa-thumbs-down"></i> 0</a>
+              <div>
+                <h2 (click)="createLike(p?.id)"
+                    class="btn text-green"><i class="icon ion-thumbsup"></i>{{p.numberLike}}</h2>
+                <h2 (click)="createDisLike(p?.id)" class="btn text-red"><i
+                  class="fa fa-thumbs-down"></i>{{p.numberDisLike}}</h2>
+              </div>
             </div>
             <div class="line-divider"></div>
             <div class="post-text">
               <p style="font-size: 20px">{{p.content}}</p>
             </div>
             <div class="line-divider"></div>
-            <div class="post-comment" *ngFor=" let c of comment">
-              <img src="https://i.pinimg.com/736x/cc/16/0c/cc160c19dbd165c43046c176223f10fe.jpg"
-                   class="profile-photo-sm"/>
-              <p style="font-size: 16px"><a class="profile-link">Julia </a> {{c.content}}
-              </p>
+            <h3>Tất cả bình luận: </h3>
+            <div *ngFor=" let c of comment">
+              <div *ngIf="c?.post?.id === p.id">
+                <div class="row">
+                  <div class="col-1">
+                    <img src="{{c?.user?.avatar}}"
+                         class="profile-photo-sm"/>
+                  </div>
+                  <div class="col-8">
+                    <span style="margin-top: 9px; font-size: 16px"><a class="profile-link">{{c?.user?.username}}
+                      : </a> {{c.content}}  </span>
+                  </div>
+                  <div class="col-3">
+                    <span>
+                        {{c.createAt | date:"hh:mm | dd/MM/yyyy" }}
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="post-comment">
-              <img src="https://i.pinimg.com/736x/cc/16/0c/cc160c19dbd165c43046c176223f10fe.jpg" alt=""
-                   class="profile-photo-sm"/>
-              <input type="text" class="form-control" placeholder="Post a comment">
+            <div class="">
+              <form [formGroup]="commentCreate"
+                    (ngSubmit)="createComment(p?.id)">
+                <div class="row">
+                  <div class="col-1">
+                    <img src="{{userDetail.avatar}}" alt=""
+                         class="profile-photo-sm"/>
+                  </div>
+                  <div class="col-9">
+                    <input style="height: 40px; font-size: 18px" onfocus="this.value=''" type="text"
+                           class="form-control" formControlName="content"
+                           placeholder="Bình luận">
+                    <span style="font-size: 15px">Tối đa 500 kí tự.</span>
+                  </div>
+                  <div class="col-2">
+                    <button style="margin-top: 3px" type="submit" class="btn btn-primary btn-block mb-4">Gửi</button>
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
         </div>
@@ -102,7 +139,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </div>
 

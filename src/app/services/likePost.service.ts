@@ -18,8 +18,12 @@ export class LikePostService {
     return this.httpClient.get<Post2[]>(API_URL + `/getAllLike?id=${idPost}`);
   }
 
-  create(likePost: LikePost, idPost: string, idUser: string): Observable<LikePost> {
+  createLike(likePost: LikePost, idPost: string, idUser: string): Observable<LikePost> {
     return this.httpClient.post<LikePost>(API_URL + `/createLike?idPost=${idPost}&idUser=${idUser}`, likePost);
+  }
+
+  createDisLike(likePost: LikePost, idPost: string, idUser: string): Observable<LikePost> {
+    return this.httpClient.post<LikePost>(API_URL + `/createDisLike?idPost=${idPost}&idUser=${idUser}`, likePost);
   }
 
 }

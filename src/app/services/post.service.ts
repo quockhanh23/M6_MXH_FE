@@ -26,4 +26,8 @@ export class PostService {
     return this.httpClient.get<Post2>(API_URL + `/${id}`)
   }
 
+  createPost(post2: Post2, idUser: string): Observable<Post2> {
+    return this.httpClient.post<Post2>(API_URL + `/createPost?idUser=${idUser}`, post2);
+  }
+
 }

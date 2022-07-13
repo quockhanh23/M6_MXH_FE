@@ -19,4 +19,8 @@ export class CommentService {
   getAll(): Observable<Comment[]> {
     return this.httpClient.get<Comment[]>(API_URL + '/all');
   }
+
+  save(comment: Comment, idUser: any, idPost: any): Observable<Comment> {
+    return this.httpClient.post<Comment>(API_URL + `/createComment?idUser=${idUser}&idPost=${idPost}`, comment)
+  }
 }

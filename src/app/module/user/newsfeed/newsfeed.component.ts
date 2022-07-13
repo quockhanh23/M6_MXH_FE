@@ -10,6 +10,7 @@ import {CommentService} from "../../../services/comment.service";
 import {Comment} from "../../../models/comment";
 import {LikePostService} from "../../../services/likePost.service";
 import {FormControl, FormGroup} from "@angular/forms";
+import {DisLikePost} from "../../../models/dis-like-post";
 
 @Component({
   selector: 'app-newsfeed',
@@ -28,8 +29,16 @@ export class NewsfeedComponent implements OnInit {
   like?: LikePost[]
   likePost?: LikePost
   comment?: Comment[]
+  commentOne?: Comment
+  disLikePost?: DisLikePost
 
-  createForm: FormGroup = new FormGroup({})
+  commentCreate: FormGroup = new FormGroup({
+    content: new FormControl("",)
+  })
+
+  newPost: FormGroup = new FormGroup({
+    content: new FormControl("",)
+  })
 
 
   constructor(private userService: UserService,
@@ -62,31 +71,68 @@ export class NewsfeedComponent implements OnInit {
     this.allPeople()
   }
 
-  logout() {
-    localStorage.clear();
-    this.router.navigate(['/'])
-  }
-
   allPostPublic() {
     this.postService.AllPost().subscribe(rs => {
       console.log("All post" + rs)
       this.post = rs
       console.log(this.post)
+      this.allComment()
+    }, error => {
+      console.log("Lỗi: " + error)
     })
   }
 
-  createLike() {
+  createLike(idPost: any) {
+    console.log("vào hàm like")
     const likePost = {
       userLike: {
         id: this.idUser
       },
       post: {
-        id: this.post?.length
+        id: idPost
       },
     }
+    console.log(likePost)
     // @ts-ignore
-    this.likePostService.create(likePost, '', '').subscribe(rs => {
+    this.likePostService.createLike(likePost, idPost, this.idUser).subscribe(rs => {
       this.likePost = rs
+      this.ngOnInit()
+    })
+  }
+
+  createDisLike(idPost: any) {
+    console.log("vào hàm DisLike")
+    const disLikePost = {
+      userLike: {
+        id: this.idUser
+      },
+      post: {
+        id: idPost
+      },
+    }
+    console.log(disLikePost)
+    // @ts-ignore
+    this.likePostService.createDisLike(disLikePost, idPost, this.idUser).subscribe(rs => {
+      this.disLikePost = rs
+      console.log(rs)
+      this.ngOnInit()
+    })
+  }
+
+  createPost(idUser: any) {
+    console.log("vào hàm createPost")
+    const post1 = {
+      content: this.newPost.value.content,
+      user: {
+        id: this.idUser
+      },
+    }
+    console.log(post1)
+    // @ts-ignore
+    this.postService.createPost(post1, idUser).subscribe(rs => {
+      this.post1 = rs
+      console.log(rs)
+      this.ngOnInit()
     })
   }
 
@@ -98,4 +144,33 @@ export class NewsfeedComponent implements OnInit {
     })
   }
 
+  allComment() {
+    console.log("vào hàm comment")
+    this.commentService.getAll().subscribe(rs => {
+      // @ts-ignore
+      this.comment = rs
+      console.log("comment: " + rs)
+    })
+  }
+
+  createComment(idPost: any) {
+    console.log("vào hàm")
+    const comment = {
+      content: this.commentCreate.value.content,
+      user: {
+        id: this.idUser
+      },
+      post: {
+        id: this.post?.length
+      }
+    }
+    // @ts-ignore
+    this.commentService.save(comment, this.idUser, idPost).subscribe(rs => {
+      console.log("Đã vào")
+      // @ts-ignore
+      this.commentOne = rs
+      console.log("Đã vào" + rs)
+    })
+    this.ngOnInit()
+  }
 }
