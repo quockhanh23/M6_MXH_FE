@@ -11,6 +11,10 @@ import {Comment} from "../../../models/comment";
 import {LikePostService} from "../../../services/likePost.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import {DisLikePost} from "../../../models/dis-like-post";
+import {IconHeart} from "../../../models/icon-heart";
+import {LikeCommentService} from "../../../services/like-comment.service";
+import {LikeComment} from "../../../models/like-comment";
+import {DisLikeComment} from "../../../models/dis-like-comment";
 
 @Component({
   selector: 'app-newsfeed',
@@ -31,6 +35,9 @@ export class NewsfeedComponent implements OnInit {
   comment?: Comment[]
   commentOne?: Comment
   disLikePost?: DisLikePost
+  heart?: IconHeart
+  commentLike?: LikeComment
+  dislikeComment?: DisLikeComment
 
   commentCreate: FormGroup = new FormGroup({
     content: new FormControl("",)
@@ -44,6 +51,7 @@ export class NewsfeedComponent implements OnInit {
               private friendRelationService: FriendRelationService,
               private commentService: CommentService,
               private likePostService: LikePostService,
+              private likeCommentService: LikeCommentService,
               private router: Router,
               private postService: PostService) {
     // @ts-ignore
@@ -125,6 +133,28 @@ export class NewsfeedComponent implements OnInit {
     })
   }
 
+  // Tạo, xóa thả tim
+  createHeart(idPost: any) {
+    console.log("vào hàm createHeart")
+    const heart = {
+      userLike: {
+        id: this.idUser
+      },
+      post: {
+        id: idPost
+      },
+    }
+    console.log(heart)
+    // @ts-ignore
+    this.likePostService.createHeart(heart, idPost, this.idUser).subscribe(rs => {
+      this.disLikePost = rs
+      console.log(rs)
+      this.ngOnInit()
+    }, error => {
+      console.log("Lỗi: " + error)
+    })
+  }
+
   // Tạo post
   createPost(idUser: any) {
     console.log("vào hàm createPost")
@@ -183,6 +213,50 @@ export class NewsfeedComponent implements OnInit {
       // @ts-ignore
       this.commentOne = rs
       console.log("Đã vào" + rs)
+    }, error => {
+      console.log("Lỗi: " + error)
+    })
+    this.ngOnInit()
+  }
+
+  createLikeComment(idComment: any) {
+    console.log("vào hàm createLikeComment")
+    const commentLike = {
+      userLike: {
+        id: this.idUser
+      },
+      comment: {
+        id: idComment
+      },
+    }
+    console.log(commentLike)
+    // @ts-ignore
+    this.likeCommentService.createLikeComment(commentLike, idComment, this.idUser).subscribe(rs => {
+      this.disLikePost = rs
+      console.log(rs)
+      this.ngOnInit()
+    }, error => {
+      console.log("Lỗi: " + error)
+    })
+    this.ngOnInit()
+  }
+
+  createDisLikeComment(idComment: any) {
+    console.log("vào hàm createDisLikeComment")
+    const dislikeComment = {
+      userLike: {
+        id: this.idUser
+      },
+      comment: {
+        id: idComment
+      },
+    }
+    console.log(dislikeComment)
+    // @ts-ignore
+    this.likeCommentService.createDisLikeComment(dislikeComment, idComment, this.idUser).subscribe(rs => {
+      this.disLikePost = rs
+      console.log(rs)
+      this.ngOnInit()
     }, error => {
       console.log("Lỗi: " + error)
     })

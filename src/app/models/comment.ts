@@ -9,4 +9,6 @@ export interface Comment {
   user?: User
   post?: Post2
   image?: string
+  numberLike?: string;
+  numberDisLike?: string;
 }

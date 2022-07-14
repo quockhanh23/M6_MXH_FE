@@ -1,3 +1,8 @@
-.a1{
+.a1 {
   cursor: pointer;
 }
+
+.c1 {
+  width: 500px !important;
+}
+

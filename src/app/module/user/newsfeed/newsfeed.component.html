@@ -48,7 +48,7 @@
                   <li><a><i class="ion-ios-videocam"></i></a></li>
                   <li><a><i class="ion-map"></i></a></li>
                 </ul>
-                <button class="btn btn-primary pull-right">Đăng</button>
+                <button style="width: 130px" class="btn btn-primary pull-right">Đăng</button>
               </div>
             </div>
           </div>
@@ -67,12 +67,7 @@
               <p style="font-size: 15px" class="text-muted">{{p.createAt | date:"dd/MM/yyyy"}}</p>
             </div>
             <div class="reaction">
-              <div>
-                <h2 (click)="createLike(p?.id)"
-                    class="btn text-green"><i class="icon ion-thumbsup"></i>{{p.numberLike}}</h2>
-                <h2 (click)="createDisLike(p?.id)" class="btn text-red"><i
-                  class="fa fa-thumbs-down"></i>{{p.numberDisLike}}</h2>
-              </div>
+              <span class="material-icons a1">more_horiz</span>
             </div>
             <div class="line-divider"></div>
             <div class="post-text">
@@ -82,6 +77,16 @@
               <img style="width: 100%;" src="{{p.image}}">
             </div>
             <div class="line-divider"></div>
+            <div>
+
+              <span style="color:#1a71c5" (click)="createLike(p?.id)" class="material-icons a1">thumb_up</span>
+              <sub>{{p.numberLike}}</sub>
+              <span style="color: #f511b4; margin-bottom: 10px; font-size: 25px"
+                    (click)="createHeart(p?.id)" class="material-icons a1">favorite</span>
+              <sub>{{p.iconHeart}}</sub>
+              <span style="color: #d20845" (click)="createDisLike(p?.id)" class="material-icons a1">thumb_down</span>
+              <sub>{{p.numberDisLike}}</sub>
+            </div>
             <h3>Tất cả bình luận: </h3>
             <div *ngFor=" let c of comment">
               <div *ngIf="c?.post?.id === p.id">
@@ -94,14 +99,17 @@
                     <span style="margin-top: 9px; font-size: 16px"><a class="profile-link">{{c?.user?.username}}
                       : </a> {{c.content}}  </span>
                     <div style=" padding: 0px">
-                      <h2 style="font-size: 15px"
-                          class="btn text-green"><i class="icon ion-thumbsup"></i></h2>
-                      <h2 style="font-size: 15px" class="btn text-red"><i
-                        class="fa fa-thumbs-down"></i></h2>
+                      <span (click)="createLikeComment(c.id)"
+                            style="margin-top: 5px; margin-left: 5px; color:#1a71c5; font-size: 18px"
+                            class="material-icons a1">thumb_up</span><sub>{{c.numberLike}}</sub>
+
+                      <span (click)="createDisLikeComment(c.id)"
+                            style="margin-top: 5px; margin-left: 5px;color: #d20845; font-size: 18px"
+                            class="material-icons a1">thumb_down</span><sub>{{c.numberDisLike}}</sub>
                     </div>
                   </div>
                   <div class="col-3">
-                    <span>
+                    <span style=" font-size: 15px !important;">
                         {{c.createAt | date:"hh:mm | dd/MM/yyyy" }}
                     </span>
                   </div>
@@ -116,15 +124,18 @@
                     <img src="{{userDetail.avatar}}" alt=""
                          class="profile-photo-sm"/>
                   </div>
-                  <div class="col-9">
-                    <input style="height: 40px; font-size: 18px" onfocus="this.value=''" type="text"
-                           class="form-control" formControlName="content"
+                  <div class="col-8">
+                    <input style=" height: 40px; font-size: 18px" onfocus="this.value=''" type="text"
+                           class="form-control c1" formControlName="content"
                            placeholder="Bình luận">
                     <span style="font-size: 15px">Tối đa 500 kí tự.</span>
                   </div>
-                  <div class="col-2">
-                    <button style="margin-top: 3px" type="submit" class="btn btn-primary btn-block mb-4">Gửi</button>
+                  <div class="col-3">
+                    <button style="text-align: center; width: 130px; margin-top: 3px" type="submit"
+                            class="btn btn-primary btn-block mb-4 c2">Gửi
+                    </button>
                   </div>
+
                 </div>
               </form>
             </div>

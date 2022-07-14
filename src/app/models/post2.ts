@@ -10,4 +10,5 @@ export interface Post2 {
   numberDisLike?: string;
   comment?: Comment
   image?: string
+  iconHeart?: string
 }
