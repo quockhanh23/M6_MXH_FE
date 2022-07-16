@@ -54,6 +54,10 @@ export class NewsfeedComponent implements OnInit {
     content: new FormControl("",)
   })
 
+  answerCommentsForm: FormGroup = new FormGroup({
+    content: new FormControl("",)
+  })
+
   newPost: FormGroup = new FormGroup({
     content: new FormControl("",)
   })
@@ -89,6 +93,7 @@ export class NewsfeedComponent implements OnInit {
     this.allPostPublic()
     this.allPeople()
     this.getListFriends(this.idUserLogIn)
+    this.allAnswerComment()
   }
 
   allPostPublic() {
@@ -278,11 +283,6 @@ export class NewsfeedComponent implements OnInit {
     this.ngOnInit()
   }
 
-  checkComment(idComment: any) {
-    this.check = false
-
-  }
-
   sendRequestFriend(idUser: any, idFriends: any) {
     console.log("vào hàm sendRequestFriend")
     this.friendRelationService.sendRequestFriend(idUser, idFriends).subscribe(rs => {
@@ -311,4 +311,29 @@ export class NewsfeedComponent implements OnInit {
       console.log("Oke")
     })
   }
+
+  createAnswerComment(idComment: any) {
+    console.log("vào hàm createAnswerComment")
+    const answerComment = {
+      content: this.answerCommentsForm.value.content,
+      user: {
+        id: this.idUser
+      },
+      comment: {
+        id: this.comment?.length
+      }
+    }
+    // @ts-ignore
+    this.answerCommentService.save(answerComment, this.idUser, idComment).subscribe(rs => {
+      console.log("Đã vào")
+      // @ts-ignore
+      this.commentOne = rs
+      this.ngOnInit()
+    }, error => {
+      console.log("Lỗi: " + error)
+    })
+  }
+  checkComment(idComment: any) {
+  }
+
 }
