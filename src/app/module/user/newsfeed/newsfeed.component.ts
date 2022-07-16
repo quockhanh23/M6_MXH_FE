@@ -15,6 +15,9 @@ import {IconHeart} from "../../../models/icon-heart";
 import {LikeCommentService} from "../../../services/like-comment.service";
 import {LikeComment} from "../../../models/like-comment";
 import {DisLikeComment} from "../../../models/dis-like-comment";
+import {FriendRelation} from "../../../models/friend-relation";
+import {AnswerCommentService} from "../../../services/answer-comment.service";
+import {AnswerComment} from "../../../models/answer-comment";
 
 @Component({
   selector: 'app-newsfeed',
@@ -38,6 +41,14 @@ export class NewsfeedComponent implements OnInit {
   heart?: IconHeart
   commentLike?: LikeComment
   dislikeComment?: DisLikeComment
+  friendRelations?: FriendRelation[];
+  friendRelations2?: FriendRelation[];
+  answerComments?: AnswerComment[]
+  check = true
+  checkRequestFriend = false
+  idFriend?: string
+  status1 = "Waiting"
+  status2 = "Friend"
 
   commentCreate: FormGroup = new FormGroup({
     content: new FormControl("",)
@@ -52,6 +63,7 @@ export class NewsfeedComponent implements OnInit {
               private commentService: CommentService,
               private likePostService: LikePostService,
               private likeCommentService: LikeCommentService,
+              private answerCommentService: AnswerCommentService,
               private router: Router,
               private postService: PostService) {
     // @ts-ignore
@@ -76,6 +88,7 @@ export class NewsfeedComponent implements OnInit {
     })
     this.allPostPublic()
     this.allPeople()
+    this.getListFriends(this.idUserLogIn)
   }
 
   allPostPublic() {
@@ -175,9 +188,11 @@ export class NewsfeedComponent implements OnInit {
     })
   }
 
+  // Mọi người
   allPeople() {
     this.userService.allUser().subscribe(rs => {
       this.users = rs
+      console.log("Kiểu dữ liệu: " + JSON.stringify(rs))
     }, error => {
       console.log("Lỗi: " + error)
     })
@@ -261,5 +276,39 @@ export class NewsfeedComponent implements OnInit {
       console.log("Lỗi: " + error)
     })
     this.ngOnInit()
+  }
+
+  checkComment(idComment: any) {
+    this.check = false
+
+  }
+
+  sendRequestFriend(idUser: any, idFriends: any) {
+    console.log("vào hàm sendRequestFriend")
+    this.friendRelationService.sendRequestFriend(idUser, idFriends).subscribe(rs => {
+      console.log("ok sendRequestFriend")
+      this.ngOnInit()
+    })
+  }
+
+  getListFriends(idUser: any) {
+    console.log("Vào hàm getListFriends" + idUser)
+    this.friendRelationService.listFriend(idUser).subscribe(rs => {
+      this.friendRelations = rs
+    })
+  }
+
+  getAllPeople() {
+    this.friendRelationService.AllFriendRelation().subscribe(rs => {
+      this.friendRelations2 = rs;
+    })
+  }
+
+  allAnswerComment() {
+    console.log("Vào hàm allAnswerComment")
+    this.answerCommentService.getAll().subscribe(rs => {
+      this.answerComments = rs
+      console.log("Oke")
+    })
   }
 }

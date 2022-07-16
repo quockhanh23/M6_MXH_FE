@@ -17,4 +17,5 @@ export interface User {
   favorite?: string;
   cover?: string;
   address?: string;
+  status?: string
 }

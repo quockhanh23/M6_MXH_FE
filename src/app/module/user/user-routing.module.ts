@@ -39,6 +39,11 @@ const routes: Routes = [
   },
 
   {
+    path: '/listFriend',
+    component: ListFriendComponent
+  },
+
+  {
     path: 'password',
     component: EditPasswordComponent
   },

@@ -16,6 +16,10 @@ export class UserService {
   constructor(private http: HttpClient) {
   }
 
+  listUser(idUser: any): Observable<User[]> {
+    return this.http.get<User[]>(API_URL + '/allUser');
+  }
+
   allUser(): Observable<User[]> {
     return this.http.get<User[]>(API_ALL_USER)
   }

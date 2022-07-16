@@ -1,5 +1,4 @@
 <div style="font-size: 18px" id="page-contents">
-
   <div class="row">
     <div class="col-md-3 static">
       <div class="profile-card">
@@ -10,19 +9,22 @@
       </div>
       <ul class="nav-news-feed">
         <li><i class="icon ion-ios-paper"></i>
-          <div><a routerLink="/user/newsfeed/detail">Tin của tôi</a></div>
+          <div><a class="a1" routerLink="/user/newsfeed/detail">Tin của tôi</a></div>
         </li>
         <li><i class="icon ion-ios-people"></i>
-          <div><a routerLink="/user/newsfeed/requests">Lời mời kết bạn</a></div>
+          <div><a class="a1" routerLink="/user/newsfeed/requests">Lời mời kết bạn</a></div>
         </li>
         <li><i class="icon ion-ios-people-outline"></i>
-          <div><a routerLink="/user/newsfeed/friends">Bạn bè</a></div>
+          <div><a class="a1" routerLink="/user/newsfeed/friends">Bạn bè</a></div>
         </li>
         <li><i class="icon ion-ios-people"></i>
-          <div><a routerLink="/user/newsfeed/people-nearby">Gợi ý kết bạn</a></div>
+          <div><a class="a1" routerLink="/user/newsfeed/people-nearby">Gợi ý kết bạn</a></div>
         </li>
         <li><i class="icon ion-chatboxes"></i>
-          <div><a>Tin nhắn</a></div>
+          <div><a class="a1" routerLink="/user/newsfeed/friends">Tin nhắn</a></div>
+        </li>
+        <li><i class="icon ion-images"></i>
+          <div><a class="a1" routerLink="/user/newsfeed/friends">Ảnh của bạn</a></div>
         </li>
       </ul>
     </div>
@@ -33,7 +35,7 @@
           <div class="row">
             <div class="col-md-7 col-sm-7">
               <div class="form-group">
-                <img src="{{userDetail.avatar}}" alt="" class="profile-photo-md"/>
+                <img src="{{userDetail.avatar}}" alt="" class="profile-photo-md a1"/>
                 <textarea name="texts" id="exampleTextarea" cols="50" rows="1" class=""
                           onfocus="this.value=''" formControlName="content"
                           placeholder="Bạn đang nghĩ gì thế?"></textarea>
@@ -43,10 +45,10 @@
             <div class="col-md-5 col-sm-5">
               <div class="tools">
                 <ul class="publishing-tools list-inline">
-                  <li><a><i class="ion-compose"></i></a></li>
-                  <li><a><i class="ion-images"></i></a></li>
-                  <li><a><i class="ion-ios-videocam"></i></a></li>
-                  <li><a><i class="ion-map"></i></a></li>
+                  <li><a class="a1" style="font-size: 25px"><i class="ion-compose"></i></a></li>
+                  <li><a class="a1" style="font-size: 25px"><i class="ion-images"></i></a></li>
+                  <li><a class="a1" style="font-size: 25px"><i class="ion-ios-videocam"></i></a></li>
+                  <li><a class="a1" style="font-size: 25px"><i class="ion-map"></i></a></li>
                 </ul>
                 <button style="width: 130px" class="btn btn-primary pull-right">Đăng</button>
               </div>
@@ -62,7 +64,7 @@
           <img src="{{p?.user?.avatar}}" alt="user" class="profile-photo-md pull-left"/>
           <div class="post-detail">
             <div class="user-info">
-              <h2><a class="profile-link">{{p?.user?.username}}</a>
+              <h2><a class="profile-link a1">{{p?.user?.username}}</a>
               </h2>
               <p style="font-size: 15px" class="text-muted">{{p.createAt | date:"dd/MM/yyyy"}}</p>
             </div>
@@ -86,6 +88,7 @@
               <sub>{{p.iconHeart}}</sub>
               <span style="color: #d20845" (click)="createDisLike(p?.id)" class="material-icons a1">thumb_down</span>
               <sub>{{p.numberDisLike}}</sub>
+              <span style="font-size: 25px; color: rebeccapurple" class="material-icons a1">zoom_in</span>
             </div>
             <h3>Tất cả bình luận: </h3>
             <div *ngFor=" let c of comment">
@@ -96,9 +99,10 @@
                          class="profile-photo-sm"/>
                   </div>
                   <div class="col-8">
-                    <span style="margin-top: 9px; font-size: 16px"><a class="profile-link">{{c?.user?.username}}
+                    <span style="margin-top: 9px; font-size: 16px"><a class="profile-link a1">{{c?.user?.username}}
                       : </a> {{c.content}}  </span>
                     <div style=" padding: 0px">
+
                       <span (click)="createLikeComment(c.id)"
                             style="margin-top: 5px; margin-left: 5px; color:#1a71c5; font-size: 18px"
                             class="material-icons a1">thumb_up</span><sub>{{c.numberLike}}</sub>
@@ -106,6 +110,27 @@
                       <span (click)="createDisLikeComment(c.id)"
                             style="margin-top: 5px; margin-left: 5px;color: #d20845; font-size: 18px"
                             class="material-icons a1">thumb_down</span><sub>{{c.numberDisLike}}</sub>
+
+                      <span (click)="checkComment(c.id)" id="dropdownMenuLink" data-toggle="dropdown"
+                            aria-expanded="false"
+                            style="margin-top: 5px; margin-left: 5px;font-size: 18px; color: yellowgreen"
+                            class="material-icons a1">question_answer</span>
+                      <!--                      <form *ngIf="!check">-->
+                      <!--                        <div class="row">-->
+                      <!--                          <div class="col-10">-->
+                      <!--                            <input-->
+                      <!--                              style="margin-bottom: 10px; margin-left: 50px;width: 370px !important;  height: 40px; font-size: 18px"-->
+                      <!--                              onfocus="this.value=''" type="text"-->
+                      <!--                              class="form-control c1" formControlName="content"-->
+                      <!--                              placeholder="Bình luận">-->
+                      <!--                          </div>-->
+                      <!--                          <div class="col-2">-->
+                      <!--                            <button style="text-align: center; width: 100px; margin-top: 3px" type="submit"-->
+                      <!--                                    class="btn btn-primary btn-block mb-4 c2">Gửi-->
+                      <!--                            </button>-->
+                      <!--                          </div>-->
+                      <!--                        </div>-->
+                      <!--                      </form>-->
                     </div>
                   </div>
                   <div class="col-3">
@@ -148,13 +173,13 @@
       <div class="suggestions" id="sticky-sidebar">
         <h3 class="grey">Những người bạn có thể biết</h3>
         <div class="follow-user" *ngFor=" let user of users">
-          <div *ngIf="user.id != idUserLogIn">
+          <div>
             <img
               src="{{user.avatar}}"
               alt="" class="profile-photo-sm pull-left a1"/>
             <div>
               <h3><a>{{user.username}}</a></h3>
-              <a style="font-size: 15px" class="text-green a1">Kết bạn</a>
+              <a style="font-size: 15px" class="text-green a1">Xem chi tiết</a>
             </div>
           </div>
         </div>

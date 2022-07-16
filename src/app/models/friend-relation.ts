@@ -1,6 +1,10 @@
+import {User} from "./user";
+
 export interface FriendRelation {
   id?: string;
   idUser?: string;
   idFriend?: string;
-  status?: string;
+  statusFriend?: string;
+  friend?: User
+  user?: User
 }
