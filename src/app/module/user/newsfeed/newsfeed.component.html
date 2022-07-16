@@ -101,21 +101,23 @@
                          class="profile-photo-sm"/>
                   </div>
                   <div class="col-8">
-                    <span style="margin-top: 9px; font-size: 16px"><a class="profile-link a1">{{c?.user?.username}}
-                      : </a> {{c.content}}  </span>
+                    <span style="margin-top: 9px; font-size: 16px">
+                      <a class="profile-link a1">{{c?.user?.username}}: </a> {{c.content}}  </span>
                     <div style=" padding: 0px">
 
                       <span (click)="createLikeComment(c.id)"
                             style="margin-top: 5px; margin-left: 5px; color:#1a71c5; font-size: 18px"
-                            class="material-icons a1">thumb_up</span><sub>{{c.numberLike}}</sub>
+                            class="material-icons a1">thumb_up</span>
+                      <sub>{{c.numberLike}}</sub>
 
                       <span (click)="createDisLikeComment(c.id)"
                             style="margin-top: 5px; margin-left: 5px;color: #d20845; font-size: 18px"
-                            class="material-icons a1">thumb_down</span><sub>{{c.numberDisLike}}</sub>
+                            class="material-icons a1">thumb_down</span>
+                      <sub>{{c.numberDisLike}}</sub>
 
                       <span
-                            style="margin-top: 5px; margin-left: 5px;font-size: 18px; color: yellowgreen"
-                            class="material-icons a1">question_answer
+                        style="margin-top: 5px; margin-left: 5px;font-size: 18px; color: yellowgreen"
+                        class="material-icons a1">question_answer
                       </span><br>
                       <div class="" id="answerCommentsForm">
                         <form [formGroup]="answerCommentsForm"
@@ -131,7 +133,8 @@
                                      placeholder="Bình luận">
                             </div>
                             <div class="col-3">
-                              <button style="text-align: center; width: 130px; margin-left: 35px; margin-top: 3px" type="submit"
+                              <button style="text-align: center; width: 130px; margin-left: 35px; margin-top: 3px"
+                                      type="submit"
                                       class="btn btn-primary btn-block mb-4 c2">Gửi
                               </button>
                             </div>
@@ -140,19 +143,23 @@
                       </div>
                       <div *ngFor="let an of answerComments">
                         <div class="row">
-                          <div class="col-1"> <span *ngIf="an?.comment?.id === c.id" style=" font-size: 15px !important;">
+                          <div class="col-1">
+                            <span *ngIf="an?.comment?.id === c.id"
+                                  style=" font-size: 15px !important;">
                       <img style="margin-left: 9px; width: 20px; height: 20px " src="{{an?.user?.avatar}}"
-                           class="profile-photo-sm"/>   </span></div>
+                           class="profile-photo-sm"/>
+                            </span>
+                          </div>
                           <div class="col-10">
                            <span *ngIf="an?.comment?.id === c.id"
-                                  style=" font-size: 16px">
+                                 style=" font-size: 16px">
                              <a class="profile-link a1">{{an?.user?.username}}: </a> {{an.content}}</span>
                           </div>
-                          <div  *ngIf="an?.comment?.id === c.id" class="col-1">  <span style=" font-size: 15px !important;">
-                        {{c.createAt | date:"hh:mm|dd/MM"}}
-                    </span></div>
+                          <div *ngIf="an?.comment?.id === c.id" class="col-1">
+                            <span style=" font-size: 15px !important;">
+                        {{c.createAt | date:"hh:mm|dd/MM"}}</span>
+                          </div>
                         </div>
-
                       </div>
                     </div>
                   </div>
