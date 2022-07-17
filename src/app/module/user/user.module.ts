@@ -17,6 +17,7 @@ import {TimelineAboutComponent} from './user-detail/timeline-about/timeline-abou
 import {TimelineFriendsComponent} from './user-detail/timeline-friends/timeline-friends.component';
 import {MyPostComponent} from './my-post/my-post.component';
 import {FriendListComponent} from "./friend-list/friend-list.component";
+import {ShortNewComponent} from "./short-new/short-new.component";
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import {FriendListComponent} from "./friend-list/friend-list.component";
     TimelineAboutComponent,
     TimelineFriendsComponent,
     MyPostComponent,
-    FriendListComponent
+    FriendListComponent,
+    ShortNewComponent
   ],
   exports: [
     EditProfileComponent

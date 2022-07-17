@@ -1,0 +1,21 @@
+<div class="row" style="border-radius: 10px">
+  <div *ngFor="let short of shortNew2"
+       style="background:wheat;  margin-left: 15px; margin-right: 15px; height: 220px;
+        border-radius: 10px; border: 1px solid"
+       class="col-2">
+    <h4>{{short?.user?.username}}</h4>
+
+    <img style="width: 100%;height: border-box" src="{{short.image}}">
+  </div>
+
+  <div
+    style="background:wheat; margin-left: 15px; margin-right: 0px;height: 220px; border-radius: 10px; border: 1px solid"
+    class="col-2">
+    <div style="height: 80px" class="row"></div>
+
+    <span style="color: #1c75bc; font-size: 35px; margin-left: 35px" class="material-icons">add_circle</span><br>
+    <h2 style="margin-left: 21px">Tạo tin </h2>
+    <div style="height: 50px" class="row"></div>
+  </div>
+  <p style=" margin-top: 15px; margin-left: 15px;">Xem tất cả tin</p>
+</div>

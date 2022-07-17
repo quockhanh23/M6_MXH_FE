@@ -32,6 +32,8 @@
       </ul>
     </div>
     <div class="col-md-6">
+      <app-short-new></app-short-new>
+      <hr>
       <div class="create-post">
         <form [formGroup]="newPostForm"
               (ngSubmit)="createPost(userDetail?.id)">
@@ -128,7 +130,8 @@
                                    class="profile-photo-sm"/>
                             </div>
                             <div class="col-8">
-                              <input style="width: 370px !important; height: 40px; font-size: 18px" onfocus="this.value=''" type="text"
+                              <input style="width: 370px !important; height: 40px; font-size: 18px"
+                                     onfocus="this.value=''" type="text"
                                      class="form-control c1 i1" formControlName="content"
                                      placeholder="Bình luận">
                             </div>
