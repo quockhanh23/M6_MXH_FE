@@ -27,13 +27,13 @@
           <div><a class="a1" routerLink="/user/newsfeed/friends">Tin nhắn</a></div>
         </li>
         <li><i class="icon ion-images"></i>
-          <div><a class="a1" routerLink="/user/newsfeed/friends">Ảnh của bạn</a></div>
+          <div><a class="a1" routerLink="/user/newsfeed/friends">Ảnh của tôi</a></div>
         </li>
       </ul>
     </div>
     <div class="col-md-6">
       <div class="create-post">
-        <form [formGroup]="newPost"
+        <form [formGroup]="newPostForm"
               (ngSubmit)="createPost(userDetail?.id)">
           <div class="row">
             <div class="col-md-7 col-sm-7">
@@ -128,12 +128,12 @@
                                    class="profile-photo-sm"/>
                             </div>
                             <div class="col-8">
-                              <input style=" height: 40px; font-size: 18px" onfocus="this.value=''" type="text"
-                                     class="form-control c1" formControlName="content"
+                              <input style="width: 370px !important; height: 40px; font-size: 18px" onfocus="this.value=''" type="text"
+                                     class="form-control c1 i1" formControlName="content"
                                      placeholder="Bình luận">
                             </div>
                             <div class="col-3">
-                              <button style="text-align: center; width: 130px; margin-left: 35px; margin-top: 3px"
+                              <button style="text-align: center; width: 100px; margin-left: 35px; margin-top: 3px"
                                       type="submit"
                                       class="btn btn-primary btn-block mb-4 c2">Gửi
                               </button>
@@ -172,7 +172,7 @@
               </div>
             </div>
             <div class="">
-              <form [formGroup]="commentCreate"
+              <form [formGroup]="commentCreateForm"
                     (ngSubmit)="createComment(p?.id)">
                 <div class="row">
                   <div class="col-1">
@@ -181,7 +181,7 @@
                   </div>
                   <div class="col-8">
                     <input style=" height: 40px; font-size: 18px" onfocus="this.value=''" type="text"
-                           class="form-control c1" formControlName="content"
+                           class="form-control c1 i1" formControlName="content"
                            placeholder="Bình luận">
                     <span style="font-size: 15px">Tối đa 500 kí tự.</span>
                   </div>

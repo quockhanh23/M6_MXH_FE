@@ -46,11 +46,9 @@ export class NewsfeedComponent implements OnInit {
   answerComments?: AnswerComment[]
   check = true
   checkRequestFriend = false
-  idFriend?: string
-  status1 = "Waiting"
-  status2 = "Friend"
+  checkOneComment = false
 
-  commentCreate: FormGroup = new FormGroup({
+  commentCreateForm: FormGroup = new FormGroup({
     content: new FormControl("",)
   })
 
@@ -58,7 +56,7 @@ export class NewsfeedComponent implements OnInit {
     content: new FormControl("",)
   })
 
-  newPost: FormGroup = new FormGroup({
+  newPostForm: FormGroup = new FormGroup({
     content: new FormControl("",)
   })
 
@@ -96,6 +94,7 @@ export class NewsfeedComponent implements OnInit {
     this.allAnswerComment()
   }
 
+  // Tất cả post
   allPostPublic() {
     console.log("vào hàm allPostPublic")
     this.postService.AllPost().subscribe(rs => {
@@ -177,7 +176,7 @@ export class NewsfeedComponent implements OnInit {
   createPost(idUser: any) {
     console.log("vào hàm createPost")
     const post1 = {
-      content: this.newPost.value.content,
+      content: this.newPostForm.value.content,
       user: {
         id: this.idUser
       },
@@ -193,7 +192,7 @@ export class NewsfeedComponent implements OnInit {
     })
   }
 
-  // Mọi người
+  // Hiển thị 10 người bên phải
   allPeople() {
     this.userService.allUser().subscribe(rs => {
       this.users = rs
@@ -203,7 +202,7 @@ export class NewsfeedComponent implements OnInit {
     })
   }
 
-  // Tất cả comment
+  // Hiển thị tất cả comment của bài viết
   allComment() {
     console.log("vào hàm allComment")
     this.commentService.getAll().subscribe(rs => {
@@ -219,7 +218,7 @@ export class NewsfeedComponent implements OnInit {
   createComment(idPost: any) {
     console.log("vào hàm createComment")
     const comment = {
-      content: this.commentCreate.value.content,
+      content: this.commentCreateForm.value.content,
       user: {
         id: this.idUser
       },
@@ -320,7 +319,7 @@ export class NewsfeedComponent implements OnInit {
         id: this.idUser
       },
       comment: {
-        id: this.comment?.length
+        id: idComment
       }
     }
     // @ts-ignore
@@ -333,7 +332,9 @@ export class NewsfeedComponent implements OnInit {
       console.log("Lỗi: " + error)
     })
   }
-  checkComment(idComment: any) {
+
+  checkComment() {
+    this.checkOneComment = true;
   }
 
 }
