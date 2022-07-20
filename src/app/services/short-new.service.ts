@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {ShortNews} from "../models/short-news";
+import {Post2} from "../models/post2";
 
 const API_URL = "http://localhost:8080/api/news";
 
@@ -19,6 +20,10 @@ export class ShortNewService {
 
   allShortNews(): Observable<ShortNews[]> {
     return this.httpClient.get<ShortNews[]>(API_URL + '/allShortNews')
+  }
+
+  createShortNew(shortNews: ShortNews, idUser: string): Observable<ShortNews> {
+    return this.httpClient.post<ShortNews>(API_URL + `/createShortNews?idUser=${idUser}`, shortNews);
   }
 
 }
