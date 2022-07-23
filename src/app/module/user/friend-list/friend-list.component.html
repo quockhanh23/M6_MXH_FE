@@ -1,13 +1,43 @@
-<!--<div style="margin-left: 50px" class="col-md-2 static">-->
-<!--  <div class="suggestions" id="sticky-sidebar">-->
-<!--    <h3 class="grey">Danh sách bạn bè</h3>-->
-<!--    <div class="follow-user" *ngFor=" let friend of listFriend">-->
-<!--      <img-->
-<!--        src="{{friend?.username}}"-->
-<!--        alt="" class="profile-photo-sm pull-left a1"/>-->
-<!--      <div>-->
-<!--        <h3><a>{{friend?.username}}</a></h3>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
+<div class="c1" style="margin-top: 30px">
+  <div style="margin-left: 100px">
+    <div class="row">
+      <div class="col-5">
+        <h3 style="font-size: 20px; margin-top: 3px" class="grey">Danh sách bạn bè</h3>
+      </div>
+      <div class="col-4">
+        <form style="margin-left: 60px">
+          <label style="font-size: 20px" for="search">Tìm kiếm bạn bè: </label>
+          <input
+            style="border-radius: 8px; border: 1px solid; width: 250px; font-size: 25px;
+            background-repeat: no-repeat !important;"
+            type="search" id="search" name="">
+        </form>
+      </div>
+      <div class="col-3">
+        <h3 style="font-size: 20px; margin-top: 3px" class="grey a1">Lời mời kết bạn</h3>
+      </div>
+    </div>
+  </div>
+  <div style="margin-left: 50px">
+  </div>
+  <div class="follow-user">
+    <div class="row" style="height: 86px">
+      <div style="background-color: #e5e5e5; border-radius: 5px" class="col-5" *ngFor=" let friend of listFriend">
+        <div class="row">
+          <div style="margin-top: 7px" class="col-1">
+            <img style="font-size: 40px; width: 70px; height: 70px; border-radius: 10px"
+                 src="{{friend?.friend?.avatar}}"
+                 alt="" class=" a1"/>
+          </div>
+          <div class="col-4">
+            <h2 style=""><a>{{friend?.friend?.fullName}}</a></h2>
+            <p>Bạn chung: </p>
+          </div>
+          <div class="col-1">
+            <span style="margin-top: 30px" class="material-icons a1">more_horiz</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -4,7 +4,7 @@ export interface Post2 {
   id?: string
   content?: string
   status?: string
-  user?: User
+  userDTO?: User
   createAt?: string
   numberLike?: string;
   numberDisLike?: string;

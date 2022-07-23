@@ -18,6 +18,7 @@ import {HeaderComponent} from './header/header.component';
     FooterComponent,
     HeaderComponent,
 
+
   ],
   imports: [
     BrowserModule,

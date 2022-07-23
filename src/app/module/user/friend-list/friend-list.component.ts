@@ -23,12 +23,10 @@ export class FriendListComponent implements OnInit {
   }
 
   getListFriends(idUser: any) {
-
     console.log("Vào hàm getListFriends" + idUser)
     this.friendRelationService.listFriend(idUser).subscribe(rs => {
       this.listFriend = rs
-      console.log("Oke" + rs)
+      console.log("Kiểu dữ liệu: " + JSON.stringify(rs))
     })
   }
-
 }

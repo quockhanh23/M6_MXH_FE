@@ -6,5 +6,5 @@ export interface FriendRelation {
   idFriend?: string;
   statusFriend?: string;
   friend?: User
-  user?: User
+  userLogin?: User
 }

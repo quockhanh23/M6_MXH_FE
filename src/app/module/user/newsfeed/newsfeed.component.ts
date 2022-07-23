@@ -4,7 +4,6 @@ import {User} from "../../../models/user";
 import {FriendRelationService} from "../../../services/friend-relation.service";
 import {Router} from "@angular/router";
 import {PostService} from "../../../services/post.service";
-import {Post2} from "../../../models/post2";
 import {LikePost} from "../../../models/likePost";
 import {CommentService} from "../../../services/comment.service";
 import {Comment} from "../../../models/comment";
@@ -18,6 +17,7 @@ import {DisLikeComment} from "../../../models/dis-like-comment";
 import {FriendRelation} from "../../../models/friend-relation";
 import {AnswerCommentService} from "../../../services/answer-comment.service";
 import {AnswerComment} from "../../../models/answer-comment";
+import {Post2} from "../../../models/post2";
 
 @Component({
   selector: 'app-newsfeed',
@@ -43,6 +43,8 @@ export class NewsfeedComponent implements OnInit {
   dislikeComment?: DisLikeComment
   friendRelations?: FriendRelation[];
   friendRelations2?: FriendRelation[];
+  friendRelations3?: FriendRelation[];
+  countFriend?: any
   answerComments?: AnswerComment[]
   check = true
   checkRequestFriend = false
@@ -92,6 +94,7 @@ export class NewsfeedComponent implements OnInit {
     this.allPeople()
     this.getListFriends(this.idUserLogIn)
     this.allAnswerComment()
+    this.allFriend(this.idUserLogIn)
   }
 
   // Tất cả post
@@ -100,7 +103,7 @@ export class NewsfeedComponent implements OnInit {
     this.postService.AllPost().subscribe(rs => {
       console.log("All post: " + rs)
       this.post = rs
-      console.log(this.post)
+      console.log("Kiểu dữ liệu: " + JSON.stringify(rs))
       this.allComment()
     }, error => {
       console.log("Lỗi: " + error)
@@ -196,7 +199,6 @@ export class NewsfeedComponent implements OnInit {
   allPeople() {
     this.userService.allUser().subscribe(rs => {
       this.users = rs
-      console.log("Kiểu dữ liệu: " + JSON.stringify(rs))
     }, error => {
       console.log("Lỗi: " + error)
     })
@@ -330,6 +332,15 @@ export class NewsfeedComponent implements OnInit {
       this.ngOnInit()
     }, error => {
       console.log("Lỗi: " + error)
+    })
+  }
+
+  allFriend(idUser: any) {
+    console.log("Vào hàm getListFriends" + idUser)
+    this.friendRelationService.listFriend(idUser).subscribe(rs => {
+      this.friendRelations3 = rs
+      this.countFriend = rs.length
+      console.log("Oke" + rs)
     })
   }
 
