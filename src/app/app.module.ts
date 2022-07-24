@@ -11,6 +11,7 @@ import {FooterComponent} from './footer/footer.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from "./material/material.module";
 import {HeaderComponent} from './header/header.component';
+import {NgbTooltipModule} from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import {HeaderComponent} from './header/header.component';
     AngularFireModule.initializeApp(environment.firebaseConfig, "cloud"),
     BrowserAnimationsModule,
     MaterialModule,
+    NgbTooltipModule,
 
   ],
   providers: [],

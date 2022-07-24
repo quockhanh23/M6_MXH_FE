@@ -39,4 +39,11 @@ export class HeaderComponent implements OnInit {
     localStorage.clear();
     this.authService.logout();
   }
+
+  checkHRF() {
+    if (window.location.href == 'http://localhost:4200/user/listFriend') {
+      return true;
+    }
+    return false;
+  }
 }
