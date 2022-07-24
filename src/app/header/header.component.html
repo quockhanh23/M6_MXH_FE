@@ -1,18 +1,29 @@
 <header id="header-inverse" style="background-color: #00aae6">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header" >
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a style="margin-bottom: 8px" class="navbar-brand"><img src="assets/images/logo.png" alt="logo"/></a>
-      </div>
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-right main-menu">
-        </ul>
-      </div>
+  <div class="row" style="height: 100px">
+    <div class="col-8">
+      <a style="margin-top: 30px" class="navbar-brand"><img src="assets/images/logo.png" alt="logo"/></a>
+    </div>
+    <div class="col-1"></div>
+    <div *ngIf="isLoggedIn()" class="col-3" align="right">
+
+      <i class="bi bi-bell-fill"></i>
+      <svg style="margin-top: 30px;margin-right: 10px; color: whitesmoke" xmlns="http://www.w3.org/2000/svg" width="35"
+           height="35" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
+        <path
+          d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+      </svg>
+
+      <i class="bi bi-messenger"></i>
+      <svg style="margin-top: 30px;margin-right: 10px; color: whitesmoke" xmlns="http://www.w3.org/2000/svg" width="35"
+           height="35"
+           fill="currentColor" class="bi bi-messenger" viewBox="0 0 16 16">
+        <path
+          d="M0 7.76C0 3.301 3.493 0 8 0s8 3.301 8 7.76-3.493 7.76-8 7.76c-.81 0-1.586-.107-2.316-.307a.639.639 0 0 0-.427.03l-1.588.702a.64.64 0 0 1-.898-.566l-.044-1.423a.639.639 0 0 0-.215-.456C.956 12.108 0 10.092 0 7.76zm5.546-1.459-2.35 3.728c-.225.358.214.761.551.506l2.525-1.916a.48.48 0 0 1 .578-.002l1.869 1.402a1.2 1.2 0 0 0 1.735-.32l2.35-3.728c.226-.358-.214-.761-.551-.506L9.728 7.381a.48.48 0 0 1-.578.002L7.281 5.98a1.2 1.2 0 0 0-1.735.32z"/>
+      </svg>
+      <img style="margin-right: 20px; margin-top: 30px" class="profile-photo-sm" src="{{avatar}}">
+    </div>
+
+  </div>
 </header>
+
 

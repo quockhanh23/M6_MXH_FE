@@ -7,7 +7,10 @@ import {AuthenticationService} from "../services/authentication.service";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  idUser?: any
+  currentUser: string = "";
+  avatar?: any
+  fullName?: any
   checkRole = localStorage.getItem('ROLE');
   username: string | null = ''
   role?: any
@@ -24,7 +27,9 @@ export class HeaderComponent implements OnInit {
 
   isLoggedIn(): boolean {
     if (localStorage.getItem('USERNAME') != null) {
-      this.username = localStorage.getItem('USERNAME');
+      // @ts-ignore
+      this.currentUser = localStorage.getItem("currentUser")
+      this.avatar = JSON.parse(this.currentUser).avatar;
       return true;
     }
     return false

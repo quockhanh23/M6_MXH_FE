@@ -12,6 +12,7 @@ export class FriendListComponent implements OnInit {
 
   idUserLogIn = localStorage.getItem("USERID")
   listFriend?: FriendRelation[];
+  count?: any
 
   constructor(private userService: UserService,
               private friendRelationService: FriendRelationService,) {
@@ -26,6 +27,7 @@ export class FriendListComponent implements OnInit {
     console.log("Vào hàm getListFriends" + idUser)
     this.friendRelationService.listFriend(idUser).subscribe(rs => {
       this.listFriend = rs
+      this.count = rs.length
       console.log("Kiểu dữ liệu: " + JSON.stringify(rs))
     })
   }

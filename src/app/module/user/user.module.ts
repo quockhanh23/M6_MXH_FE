@@ -18,6 +18,7 @@ import {TimelineFriendsComponent} from './user-detail/timeline-friends/timeline-
 import {MyPostComponent} from './my-post/my-post.component';
 import {FriendListComponent} from "./friend-list/friend-list.component";
 import {ShortNewComponent} from "./short-new/short-new.component";
+import {NgbTooltipModule} from "@ng-bootstrap/ng-bootstrap";
 
 
 @NgModule({
@@ -40,13 +41,14 @@ import {ShortNewComponent} from "./short-new/short-new.component";
   exports: [
     EditProfileComponent
   ],
-  imports: [
-    CommonModule,
-    UserRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule
-  ]
+    imports: [
+        CommonModule,
+        UserRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        NgbTooltipModule
+    ]
 })
 export class UserModule {
 }
