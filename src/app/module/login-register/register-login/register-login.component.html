@@ -2,7 +2,16 @@
 ================================================= -->
 
 <div class="container wrapper">
-
+  <div *ngIf="checkHRF()">
+    <h2>Đăng nhập gần đây</h2>
+    <div class="row">
+      <div style="margin-right: 10px" class="col-2" *ngFor="let user of lastUserLogin">
+        <img style="border-radius: 15px; width: 80px; height: 80px" src="{{user.avatar}}" alt="">
+        <h2>{{user.userName}}</h2>
+        <p>{{user.loginTime | date:"hh:mm | dd/MM/yyyy"}}</p>
+      </div>
+    </div>
+  </div>
   <div class="row a2">
     <div class="col-sm-5">
       <div style="color: #2b669a !important;" class="intro-texts">

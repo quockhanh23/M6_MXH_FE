@@ -5,6 +5,7 @@ import {AuthenticationService} from "../../../services/authentication.service";
 import {UserService} from "../../../services/user.service";
 import {JWTResponse} from "../../../models/JWTResponse";
 import * as moment from 'moment';
+import {LastUserLogin} from "../../../models/last-user-login";
 
 declare var $: any;
 
@@ -37,6 +38,7 @@ export class RegisterLoginComponent implements OnInit {
   error = '';
   loading = false;
   submitted = false;
+  lastUserLogin?: LastUserLogin[]
 
   constructor(private activatedRoute: ActivatedRoute,
               private router: Router,
@@ -51,6 +53,7 @@ export class RegisterLoginComponent implements OnInit {
     // this.returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'] || '/';
     this.returnUrl = 'user/user-detail/timeline';
     this.adminUrl = '/admin'
+    this.historyLogin()
   }
 
   login(): void {
@@ -118,5 +121,18 @@ export class RegisterLoginComponent implements OnInit {
 
   showLogin() {
     $("#showLogin").click();
+  }
+
+  historyLogin() {
+    this.userService.historyLogin().subscribe(rs => {
+      this.lastUserLogin = rs
+    })
+  }
+
+  checkHRF() {
+    if (window.location.href == 'http://localhost:4200/') {
+      return true;
+    }
+    return false;
   }
 }

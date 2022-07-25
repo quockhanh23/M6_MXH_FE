@@ -16,6 +16,10 @@ export class UserService {
   constructor(private http: HttpClient) {
   }
 
+  historyLogin(): Observable<User[]> {
+    return this.http.get<User[]>(API_URL + '/historyLogin');
+  }
+
   listUser(idUser: any): Observable<User[]> {
     return this.http.get<User[]>(API_URL + '/allUser');
   }

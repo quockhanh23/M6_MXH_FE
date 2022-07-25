@@ -41,7 +41,7 @@ export class HeaderComponent implements OnInit {
   }
 
   checkHRF() {
-    if (window.location.href == 'http://localhost:4200/user/listFriend') {
+    if (window.location.href == 'http://localhost:4200/user/listFriend' || window.location.href == 'http://localhost:4200/') {
       return true;
     }
     return false;
