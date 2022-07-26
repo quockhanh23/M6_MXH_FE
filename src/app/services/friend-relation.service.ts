@@ -17,7 +17,6 @@ export class FriendRelationService {
     return this.httpClient.get<FriendRelation[]>(API_URL)
   }
 
-
   sendRequestFriend(idUser: any, idFriend: any): Observable<FriendRelation> {
     return this.httpClient.delete<FriendRelation>(API_URL + `/sendRequestFriend?idUser=${idUser}&idFriend=${idFriend}`);
   }

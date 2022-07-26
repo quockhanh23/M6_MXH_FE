@@ -84,14 +84,15 @@
             </div>
             <div class="line-divider"></div>
             <div>
-              <span style="color:#1a71c5" (click)="createLike(p?.id)" class="material-icons a1">thumb_up</span>
+              <span style="color:#1a71c5" (click)="createLike(p?.id)" ngbTooltip="Thích" class="material-icons a1">thumb_up</span>
               <sub>{{p.numberLike}}</sub>
               <span style="color: #f511b4; margin-bottom: 10px; font-size: 25px"
-                    (click)="createHeart(p?.id)" class="material-icons a1">favorite</span>
+                    (click)="createHeart(p?.id)" ngbTooltip="Thả tim" class="material-icons a1">favorite</span>
               <sub>{{p.iconHeart}}</sub>
-              <span style="color: #d20845" (click)="createDisLike(p?.id)" class="material-icons a1">thumb_down</span>
+              <span style="color: #d20845" (click)="createDisLike(p?.id)" ngbTooltip="Không thích"
+                    class="material-icons a1">thumb_down</span>
               <sub>{{p.numberDisLike}}</sub>
-              <span style="font-size: 25px; color: rebeccapurple" class="material-icons a1">zoom_in</span>
+              <span style="font-size: 25px; color: rebeccapurple" ngbTooltip="Tác vụ khác" class="material-icons a1">zoom_in</span>
             </div>
             <h3>Tất cả bình luận: </h3>
             <div *ngFor=" let c of comment">
@@ -106,19 +107,19 @@
                       <a class="profile-link a1">{{c?.user?.username}}: </a> {{c.content}}  </span>
                     <div style=" padding: 0px">
 
-                      <span (click)="createLikeComment(c.id)"
+                      <span (click)="createLikeComment(c.id)" ngbTooltip="Thích"
                             style="margin-top: 5px; margin-left: 5px; color:#1a71c5; font-size: 18px"
                             class="material-icons a1">thumb_up</span>
                       <sub>{{c.numberLike}}</sub>
 
-                      <span (click)="createDisLikeComment(c.id)"
+                      <span (click)="createDisLikeComment(c.id)" ngbTooltip="Không thích"
                             style="margin-top: 5px; margin-left: 5px;color: #d20845; font-size: 18px"
                             class="material-icons a1">thumb_down</span>
                       <sub>{{c.numberDisLike}}</sub>
 
-                      <span
-                        style="margin-top: 5px; margin-left: 5px;font-size: 18px; color: yellowgreen"
-                        class="material-icons a1">question_answer
+                      <span (click)="deleteComment(c.id, p.id)" ngbTooltip="Xóa"
+                            style="margin-top: 5px; margin-left: 5px;font-size: 18px; color: yellowgreen"
+                            class="material-icons a1">question_answer
                       </span><br>
                       <div class="" id="answerCommentsForm">
                         <form [formGroup]="answerCommentsForm"

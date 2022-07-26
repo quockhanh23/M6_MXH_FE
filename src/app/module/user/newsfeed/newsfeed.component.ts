@@ -348,4 +348,11 @@ export class NewsfeedComponent implements OnInit {
     this.checkOneComment = true;
   }
 
+  deleteComment(idComment: any, idPost: any) {
+    this.commentService.deleteComment(this.idUserLogIn,idComment, idPost).subscribe(rs => {
+      this.ngOnInit()
+    }, error => {
+      console.log(error)
+    })
+  }
 }

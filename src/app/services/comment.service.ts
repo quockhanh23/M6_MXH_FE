@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {AnswerComment} from "../models/answer-comment";
 
 const API_URL = "http://localhost:8080/api/comments";
 
@@ -18,6 +19,10 @@ export class CommentService {
 
   getAll(): Observable<Comment[]> {
     return this.httpClient.get<Comment[]>(API_URL + '/all');
+  }
+
+  deleteComment(idUser: any, idComment: any, idPost: any): Observable<AnswerComment> {
+    return this.httpClient.delete<AnswerComment>(API_URL + `/deleteComment?idUser=${idUser}&idComment=${idComment}&idPost=${idPost}`);
   }
 
   save(comment: Comment, idUser: any, idPost: any): Observable<Comment> {

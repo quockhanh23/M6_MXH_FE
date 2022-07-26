@@ -5,8 +5,6 @@ import {environment} from "../../environments/environment";
 import {User} from "../models/user";
 
 const API_URL = environment.apiUrl;
-const API_LOGIN = "http://localhost:8080/api/users"
-const API_ALL_USER = "http://localhost:8080/api/allUser"
 
 @Injectable({
   providedIn: 'root'
@@ -20,12 +18,8 @@ export class UserService {
     return this.http.get<User[]>(API_URL + '/historyLogin');
   }
 
-  listUser(idUser: any): Observable<User[]> {
-    return this.http.get<User[]>(API_URL + '/allUser');
-  }
-
   allUser(): Observable<User[]> {
-    return this.http.get<User[]>(API_ALL_USER)
+    return this.http.get<User[]>(API_URL + '/allUser')
   }
 
   register(user: User): Observable<User> {
@@ -33,7 +27,7 @@ export class UserService {
   }
 
   login(user: User): Observable<User> {
-    return this.http.post<User>(API_LOGIN + '/login', user);
+    return this.http.post<User>(API_URL + 'users/login', user);
   }
 
   matchPassword(user: User): Observable<User> {
