@@ -3,7 +3,7 @@
   <div style="margin-left: 100px">
     <div class="row">
       <div class="col-5">
-        <h3 style="font-size: 20px; margin-top: 3px" class="grey">Danh sách bạn bè</h3>
+        <h3 style="font-size: 20px; margin-left: 95px; margin-top: 3px" class="grey">Danh sách bạn bè</h3>
       </div>
       <div class="col-4">
         <form style="margin-left: 60px">
@@ -21,11 +21,12 @@
   </div>
   <div style="margin-left: 50px">
   </div>
-  <div class="follow-user">
+  <div style="margin-left: 200px" class="">
+
     <div class="row" style="height: 86px">
-      <div style="background-color: #e5e5e5; border-radius: 5px" class="col-5" *ngFor=" let friend of listFriend">
+      <div class="col" style=" margin: 10px; background-color: #e5e5e5; border-radius: 5px" class="col-5" *ngFor=" let friend of listFriend">
         <div class="row">
-          <div style="margin-top: 7px" class="col-1">
+          <div style="margin-top: 5px; margin-left: 1px" class="">
             <img style="font-size: 40px; width: 70px; height: 70px; border-radius: 10px"
                  data-toggle="tooltip" data-placement="top" title="Ấn để xem trang cá nhân"
                  src="{{friend?.friend?.avatar}}"
